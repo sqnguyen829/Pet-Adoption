@@ -43,6 +43,7 @@ surTab.addEventListener("click", ()=>{
         const form = document.createElement("form")
         const inputAnimalName = document.createElement('input')
         const inputSpecies = document.createElement('input')
+        const inputBreed = document.createElement('input')
         const inputImage = document.createElement('input')
         const inputGender = document.createElement('input')
         const inputAge = document.createElement('input')
@@ -55,13 +56,16 @@ surTab.addEventListener("click", ()=>{
         const br4 = document.createElement('br')
         const br5 = document.createElement('br')
         const br6 = document.createElement('br')
+        const br7 = document.createElement('br')
 
         inputAnimalName.value = ""
         inputAnimalName.placeholder = "Enter a name..."
 
         inputSpecies.value = ""
         inputSpecies.placeholder = "Enter a Species..."
-        inputSpecies.br
+
+        inputBreed.value = ""
+        inputBreed.placeholder = "Enter a breed..."
 
         inputImage.value = ""
         inputImage.placeholder = "Enter a imgae url..."
@@ -81,25 +85,40 @@ surTab.addEventListener("click", ()=>{
         surSubmit.innerText = "Surrender Animal"
         surSubmit.className = "submit"
         form.addEventListener('submit', ()=>{
-            console.log('hello')
-        //     fetch("http://localhost:3000/toys", {
-        //          method: "POST",
-        //          headers: {
-        //              "Content-Type": "application/json"
-        //          },
-        //          body: JSON.stringify({
-        //              "name": toyName,
-        //              "image": toyURL,
-        //              "likes": 0
-        //          })
-        //     })
-        //     .then(res => res.json())
-        //     .then(newToy => {
-        //          renderToy(newToy)
-        //  })
+            event.preventDefault()
+            // debugger 
+            let animalName = event.target[0].value
+            let species = event.target[1].value
+            let breed = event.target[2].value
+            let image = event.target[3].value
+            let gender = event.target[4].value
+            let age = event.target[5].value
+            let desc = event.target[6].value
+            form.reset()
+            fetch(animalURL, {
+                 method: "POST",
+                 headers: {
+                     "Content-Type": "application/json"
+                 },
+                 body: JSON.stringify({
+                     "animal":{
+                        "name": animalName,
+                        "species": species,
+                        "breed": breed,
+                        "image": image,
+                        "gender": gender,
+                        "age": age,
+                        "status": "Availible",
+                        "description": desc}
+                 })
+            })
+            .then(res => res.json())
+            .then(newAnimal => {
+                console.log(newAnimal)
+         })
         })
 
-        form.append(inputAnimalName,br1,inputSpecies,br2,inputImage,br3,inputGender,br4,inputAge,br5,inputDesc,br6,surSubmit)
+        form.append(inputAnimalName,br1,inputSpecies,br2,inputBreed,br3,inputImage,br4,inputGender,br5,inputAge,br6,inputDesc,br7,surSubmit)
         surrenderDiv.append(form)
     
 }

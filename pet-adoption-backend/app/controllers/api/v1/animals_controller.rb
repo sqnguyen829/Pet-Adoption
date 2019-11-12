@@ -12,4 +12,14 @@ class Api::V1::AnimalsController < ApplicationController
             render json: {message: 'animal not found'}
         end
     end
+
+    def create
+        animal = Animal.create(animal_params)
+    end
+
+    private
+
+    def animal_params
+        params.require(:animal).permit(:name,:species,:breed,:image,:gender,:age,:status,:description)
+    end
 end
