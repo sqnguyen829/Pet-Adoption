@@ -1,7 +1,8 @@
-fetch('localhost:3000/animals')
+document.addEventListener('DOMContentLoaded', () => {
+fetch('http://localhost:3000/api/v1/animals')
 .then(res => res.json())
-.then(Animals => {
-    Animals.forEach(animal => showAnimals(animal))
+.then(animals => {
+    animals.forEach(animal => showAnimals(animal))
 })
 
 function showAnimals(animal){
@@ -17,3 +18,28 @@ function showAnimals(animal){
     })
     
 }
+
+
+// Fernando - Login form
+
+    const signInForm = document.querySelector('#sign-in-form') 
+
+    signInForm.addEventListener('submit', () => {
+        event.preventDefault()
+
+        fetch('http://localhost:3000/api/v1/users')
+        .then(res => res.json())
+        .then(users => {
+            console.log(users)
+        })
+
+
+    })
+
+
+})
+
+
+
+
+
