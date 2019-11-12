@@ -1,0 +1,333 @@
+{
+    "pets": [
+      {
+        "id": 1,
+        "Name": "Luis",
+        "species": "Dog",
+        "gender": "male",
+        "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-HFYJ5aEcIA9vMlxSZqpb4-cJjTY-ed7icqrGVkYusDrrEmyS&s",
+        "age": 3,
+        "description": "Hey there! I'm a scrappy little Pugh that's looking for a home.I like long walks around the neighborhood, and long naps in the day. I like a good treat like any other Pugh. Come by and visit me! Let's hang!",
+        "availability": "available"
+       
+      },
+      {
+        "id": 2,
+        "Name": "Gigi",
+        "species": "Cat",
+        "gender": "Female",
+        "imageURL": "https://images.theconversation.com/files/209024/original/file-20180306-146671-haxeo6.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=496&fit=clip",
+        "age": 6,
+        "description": "Woman have the right to do whatever they want to do with their bodies! Let's send a message to those in ur government that don't believe that!",
+        "availability": "available"
+      },
+      {
+        "id": 3,
+        "Name": "Charlie",
+        "species": "Dog",
+        "gender": "male",
+        "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDgx1c9QaY8EE2pdODHAWZlHrKNC1838wDP9fJBzh8t87D9Osx&s",
+        "age": 15,
+        "description": "Are you looking for a good boy? I'm the pup for you",
+        "availability": "available"
+        
+      },
+      {
+        "id": 4,
+        "Name": "Jessie",
+        "species": "Dog",
+        "gender": "male",
+        "imageURL": "https://pmcdeadline2.files.wordpress.com/2019/10/shutterstock_editorial_10434333bm.jpg",
+        "age": 3,
+        "description": "The time is now!",
+        "availability": "available"
+        
+      },
+      {
+        "id": 5,
+        "Name": "Kulae",
+        "species": "Cat",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 13,
+        "description": "Dance until you stop declawing us!!!!",
+        "availability": "available"
+       
+      },
+      {
+        "id": 6,
+        "Name": "Jim Jim",
+        "species": "Dog",
+        "gender": "male",
+        "imageURL": "",
+        "age": 8,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 7,
+        "Name": "Colby",
+        "species": "Dog",
+        "gender": "Male",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 18,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 8,
+        "Name": "Noel",
+        "species": "Cat",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 8,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 9,
+        "Name": "Olive",
+        "species": "Cat",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 9,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 10,
+        "Name": "Paco",
+        "species": "Dog",
+        "gender": "Male",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 15,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 11,
+        "Name": "Dakota",
+        "species": "Dog",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 15,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 12,
+        "Name": "Blue",
+        "species": "Dog",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 13,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 13,
+        "Name": "Sting",
+        "species": "Dog",
+        "gender": "Male",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 15,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 14,
+        "Name": "Cocoa",
+        "species": "Cat",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 2,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 15,
+        "Name": "Sprite",
+        "species": "Cat",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 5,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 16,
+        "Name": "Nastradamus",
+        "species": "Dog",
+        "gender": "Male",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 15,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 17,
+        "Name": "Laney",
+        "species": "Dog",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 13,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 18,
+        "Name": "Opal",
+        "species": "cat",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 13,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 19,
+        "Name": "Tico",
+        "species": "Cat",
+        "gender": "Male",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 13,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 20,
+        "Name": "Anabelle",
+        "species": "Cat",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 7,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 21,
+        "Name": "Rover",
+        "species": "Dog",
+        "gender": "Male",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 5,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 22,
+        "Name": "Toon",
+        "species": "Dog",
+        "gender": "Male",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 7,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 23,
+        "Name": "Spartacus",
+        "species": "Dog",
+        "gender": "Male",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 7,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 24,
+        "Name": "Noah",
+        "species": "Dog",
+        "gender": "Male",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 5,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 25,
+        "Name": "Kennedy",
+        "species": "Cat",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 6,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 26,
+        "Name": "Goldy",
+        "species": "Cat",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 7,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 27,
+        "Name": "Puma",
+        "species": "Cat",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 8,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 28,
+        "Name": "Jango",
+        "species": "Cat",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 6,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 29,
+        "Name": "Digby",
+        "species": "Cat",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 5,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      },
+      {
+        "id": 20,
+        "Name": "Fuzzy",
+        "species": "Cat",
+        "gender": "Female",
+        "imageURL": "https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif",
+        "age": 4,
+        "description": "its lit frday turn up",
+        "availability": "available"
+        
+      }
+    ]
+  }
