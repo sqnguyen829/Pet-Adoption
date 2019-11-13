@@ -129,25 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             animalList.style.display = 'block'
             console.log("show list")
-        }
-    })
-
-
-            inputAge.value = ""
-            inputAge.placeholder = "Enter a age..."
-
-            inputDesc.value = ""
-            inputDesc.placeholder = "Enter a description..."
-
-            surSubmit.type = "submit"
-            surSubmit.name = "submit"
-
-            surSubmit.innerText = "Surrender Animal"
-            surSubmit.className = "submit"
-            form.addEventListener('submit', () => {
-                console.log('hello')
-            })
-
+        
             form.append(inputAnimalName, br1, inputSpecies, br2, inputImage, br3, inputGender, br4, inputAge, br5, inputDesc, br6, surSubmit)
             surrenderDiv.append(form)
 
