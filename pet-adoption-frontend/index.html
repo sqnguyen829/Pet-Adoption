@@ -36,7 +36,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sign In
             </a>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu" id="dropdownFormSignIn">
                 <form class="px-4 py-3" id="sign-in-form">
                     <div class="form-group">
                     <label for="exampleDropdownFormEmail1">User Name:</label>
@@ -51,12 +51,12 @@
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#"></a>
+                <p class="dropdown-item" id="error-message-form"></p>
             </div>
         </li>
 
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkSignUp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sign up
             </a>
             <div class="dropdown-menu">
@@ -76,6 +76,9 @@
                 <div class="dropdown-divider"></div>
                 
             </div>
+        </li>
+        <li class="nav-item active" id="login-bar-name">
+            <!-- <p class="nav-link"><span>Login as:</span>Username</p> -->
         </li>
         </ul>
     </div>
