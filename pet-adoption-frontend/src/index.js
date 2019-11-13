@@ -1,39 +1,38 @@
-document.addEventListener('DOMContentLoaded', () => {
-fetch('http://localhost:3000/api/v1/animals')
-.then(res => res.json())
-.then(animals => {
-    animals.forEach(animal => showAnimals(animal))
 let hideList = false
 let hideSurrender = true
-
 const animalURL = 'http://localhost:3000/api/v1/animals/'
 
-const surTab = document.querySelector('#surrender')
-const surSubmit = document.createElement('button')
-const animalList = document.querySelector('#animal-list')
-const surrenderDiv = document.querySelector('#surrenderDiv')
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('http://localhost:3000/api/v1/animals')
+    .then(res => res.json())
+    .then(animals => {
+    animals.forEach(animal => showAnimals(animal))
+    
+    const surTab = document.querySelector('#surrender')
+    const surSubmit = document.createElement('button')
+    const animalList = document.querySelector('#animal-list')
+    const surrenderDiv = document.querySelector('#surrenderDiv')
 
-fetch(animalURL)
-.then(res => res.json())
-.then(animalData => {
+    fetch(animalURL)
+    .then(res => res.json())
+    .then(animalData => {
     console.log(animalData)
     // animalData.forEach(animal => showAnimals(animal))
-})
+    })
 
-// function showAnimals(animal){
-//     const ul = document.querySelector('#populate-this-list')
+    // function showAnimals(animal){
+    //     const ul = document.querySelector('#populate-this-list')
 
-//     const petLi = document.createElement('li')
+    //     const petLi = document.createElement('li')
 
-//     const statBtn = document.createElement('button')
-//     statBtn.innerText = animal.status
+    //     const statBtn = document.createElement('button')
+    //     statBtn.innerText = animal.status
 
-//     statBtn.addEventListener('click', (event)=>{
+    //     statBtn.addEventListener('click', (event)=>{
         
-//     })
+    //     })
     
-// }
-
+    // }
 
 surTab.addEventListener("click", ()=>{
     hideList = !hideList
@@ -142,10 +141,6 @@ surTab.addEventListener("click", ()=>{
         .then(users => {
             console.log(users)
         })
-
-
     })
-
-
 })
 
