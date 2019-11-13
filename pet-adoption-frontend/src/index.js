@@ -121,8 +121,14 @@ surTab.addEventListener("click", ()=>{
         form.append(inputAnimalName,br1,inputSpecies,br2,inputBreed,br3,inputImage,br4,inputGender,br5,inputAge,br6,inputDesc,br7,surSubmit)
         surrenderDiv.append(form)
     
-}
-
+    }else {
+        while(surrenderDiv.firstChild){
+            surrenderDiv.removeChild(surrenderDiv.firstChild)
+        }
+        animalList.style.display = 'block'
+        console.log("show list")
+    }
+})
 
 // Fernando - Login form
 
@@ -141,19 +147,5 @@ surTab.addEventListener("click", ()=>{
     })
 
 
-})
-
-
-
-
-
-    } else {
-        while(surrenderDiv.firstChild){
-            surrenderDiv.removeChild(surrenderDiv.firstChild)
-        }
-        animalList.style.display = 'block'
-        
-        console.log("show list")
-    }
 })
 
