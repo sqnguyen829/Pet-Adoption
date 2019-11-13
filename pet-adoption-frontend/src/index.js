@@ -1,58 +1,39 @@
 let hideList = false
 let hideSurrender = true
 
-document.addEventListener('DOMContentLoaded', () => {
+const animalURL = 'http://localhost:3000/api/v1/animals/'
 
-    const animalURL = 'http://localhost:3000/api/v1/animals'
+document.addEventListener('DOMContentLoaded', () => {
 
     const surTab = document.querySelector('#surrender')
     const surSubmit = document.createElement('button')
     const animalList = document.querySelector('#animal-list')
     const surrenderDiv = document.querySelector('#surrenderDiv')
 
+
     fetch(animalURL)
-        .then(res => res.json())
-        .then(dogs => {
-            // users.forEach(data => displayUserOnNavBar(data))
-            dogs.forEach(dog => displayAllDogs(dog))
-        })
+    .then(res => res.json())
+    .then(animalData => {
+        console.log(animalData)
+        // animalData.forEach(animal => showAnimals(animal))
+    })
 
+    // function showAnimals(animal){
+    //     const ul = document.querySelector('#populate-this-list')
 
-        function displayAllDogs(dog){
-            
-            const animalList = document.querySelector('#animal-list')
+    //     const petLi = document.createElement('li')
 
-        // <div class="col-lg-3 col-md-6 mb-4" > divOne
-        //     <div class="card h-100"> divTwo
-        //         <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-        //         <div class="card-body"> divThree
-        //         <h4 class="card-title">Animal Name</h4>
-        //         <ul style="text-align: left;">
-        //             <li id="specie"><span>Specie: </span>specie</li>
-        //             <li id="gender"><span>Gender: </span>gender</li>
-        //             <li id="age"><span>Age: </span>age</li>
-        //         </ul>
-        //         </div>
-        //         <div class="card-footer"> divFour
-        //         <a href="#" class="btn btn-primary">Find Out More!</a>
-        //         </div>
-        //     </div>
-        // </div>
+    //     const statBtn = document.createElement('button')
+    //     statBtn.innerText = animal.status
 
-            const divOne = document.createElement('div')
-            divOne.className = 'card h-100'
+    //     statBtn.addEventListener('click', (event)=>{
+        
+    //     })
+    
+    // }
 
-            const divTwo = document.createElement('div')
-            divTwo.className = 'card h-100'
-            const divThree = document.createElement('div')
-            const divFour = document.createElement('div')
-            
-            
-        }
+    surTab.addEventListener("click", ()=>{
 
-
-
-    surTab.addEventListener("click", () => {
         hideList = !hideList
         if (hideList) {
             animalList.style.display = 'none'
@@ -60,6 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const form = document.createElement("form")
             const inputAnimalName = document.createElement('input')
             const inputSpecies = document.createElement('input')
+
+            const inputBreed = document.createElement('input')
             const inputImage = document.createElement('input')
             const inputGender = document.createElement('input')
             const inputAge = document.createElement('input')
@@ -73,18 +56,82 @@ document.addEventListener('DOMContentLoaded', () => {
             const br5 = document.createElement('br')
             const br6 = document.createElement('br')
 
+            const br7 = document.createElement('br')
+
             inputAnimalName.value = ""
             inputAnimalName.placeholder = "Enter a name..."
 
             inputSpecies.value = ""
             inputSpecies.placeholder = "Enter a Species..."
-            inputSpecies.br
+
+
+            inputBreed.value = ""
+            inputBreed.placeholder = "Enter a breed..."
 
             inputImage.value = ""
             inputImage.placeholder = "Enter a imgae url..."
 
             inputGender.value = ""
             inputGender.placeholder = "Enter a gender..."
+
+
+            inputAge.value = ""
+            inputAge.placeholder = "Enter a age..."
+
+            inputDesc.value = ""
+            inputDesc.placeholder = "Enter a description..."
+
+            surSubmit.type = "submit"
+            surSubmit.name = "submit"
+
+            surSubmit.innerText = "Surrender Animal"
+            surSubmit.className = "submit"
+            form.addEventListener('submit', ()=>{
+                event.preventDefault()
+                // debugger 
+                let animalName = event.target[0].value
+                let species = event.target[1].value
+                let breed = event.target[2].value
+                let image = event.target[3].value
+                let gender = event.target[4].value
+                let age = event.target[5].value
+                let desc = event.target[6].value
+                form.reset()
+                fetch(animalURL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        "animal":{
+                            "name": animalName,
+                            "species": species,
+                            "breed": breed,
+                            "image": image,
+                            "gender": gender,
+                            "age": age,
+                            "status": "Availible",
+                            "description": desc}
+                    })
+                })
+                .then(res => res.json())
+                .then(newAnimal => {
+                    console.log(newAnimal)
+                })
+            })
+
+            form.append(inputAnimalName,br1,inputSpecies,br2,inputBreed,br3,inputImage,br4,inputGender,br5,inputAge,br6,inputDesc,br7,surSubmit)
+            surrenderDiv.append(form)
+    
+        }else {
+            while(surrenderDiv.firstChild){
+                surrenderDiv.removeChild(surrenderDiv.firstChild)
+            }
+            animalList.style.display = 'block'
+            console.log("show list")
+        }
+    })
+
 
             inputAge.value = ""
             inputAge.placeholder = "Enter a age..."
@@ -124,6 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         fetch('http://localhost:3000/api/v1/users')
+
             .then(res => res.json())
             .then(users => {
                 // users.forEach(data => displayUserOnNavBar(data))

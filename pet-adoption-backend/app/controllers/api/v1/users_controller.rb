@@ -12,4 +12,14 @@ class Api::V1::UsersController < ApplicationController
             render json: {message: 'User not found'}
         end
     end
+
+    def create
+        user = User.create(user_params)
+    end
+
+    private
+
+    def animal_params
+        params.require(:user).permit(:user_name,:first_name,:last_name,:email,:address,:phone_num)
+    end
 end
