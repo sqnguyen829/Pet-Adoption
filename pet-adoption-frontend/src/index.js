@@ -3,11 +3,6 @@ let hideSurrender = true
 const animalURL = 'http://localhost:3000/api/v1/animals/'
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:3000/api/v1/animals')
-    .then(res => res.json())
-    .then(animals => {
-    animals.forEach(animal => showAnimals(animal))
-    
     const surTab = document.querySelector('#surrender')
     const surSubmit = document.createElement('button')
     const animalList = document.querySelector('#animal-list')
@@ -16,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(animalURL)
     .then(res => res.json())
     .then(animalData => {
-    console.log(animalData)
-    // animalData.forEach(animal => showAnimals(animal))
+        console.log(animalData)
+        // animalData.forEach(animal => showAnimals(animal))
     })
 
     // function showAnimals(animal){
