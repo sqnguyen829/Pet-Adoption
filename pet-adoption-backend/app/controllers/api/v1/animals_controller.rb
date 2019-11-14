@@ -15,6 +15,7 @@ class Api::V1::AnimalsController < ApplicationController
 
     def create
         animal = Animal.create(animal_params)
+        render json: animal
     end
 
     private
