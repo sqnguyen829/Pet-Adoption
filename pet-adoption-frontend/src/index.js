@@ -1,47 +1,91 @@
 let hideList = false
 let hideSurrender = true
-
 const animalURL = 'http://localhost:3000/api/v1/animals/'
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    const surTab = document.querySelector('#surrender')
-    const surSubmit = document.createElement('button')
-    const animalList = document.querySelector('#animal-list')
-    const surrenderDiv = document.querySelector('#surrenderDiv')
-
+const surTab = document.querySelector('#surrender')
+const surSubmit = document.createElement('button')
+const animalList = document.querySelector('#animal-list')
+const surrenderDiv = document.querySelector('#surrenderDiv')
 
     fetch(animalURL)
-        .then(res => res.json())
-        .then(animalData => {
-            console.log(animalData)
-            // animalData.forEach(animal => showAnimals(animal))
-        })
+    .then(res => res.json())
+    .then(animalData => {
+    
+        animalData.forEach(animal => showAnimals(animal))
+    })
 
-    // function showAnimals(animal){
-    //     const ul = document.querySelector('#populate-this-list')
+    ///////////////// show animal list start /////////////////////////////////////
+    function showAnimals(animal){
+    const animalCard = document.createElement('div')
+    animalCard.className = "card h-100"
+    animalCard.id = animal.id
+    
+    const animalImg = document.createElement('img')
+    animalImg.src = animal.image
+    animalImg.className = "card-img-top"
+    animalImg.setAttribute("alt", " ")
 
-    //     const petLi = document.createElement('li')
+    const bodyDiv = document.createElement('div')
+    bodyDiv.className = "card-body"
 
-    //     const statBtn = document.createElement('button')
-    //     statBtn.innerText = animal.status
+    const h4 = document.createElement('h4')
+    h4.className = "card-title"
+    h4.innerText = animal.name 
 
-    //     statBtn.addEventListener('click', (event)=>{
+    const ul = document.createElement('ul')
+    ul.setAttribute("style", "text-align: left;")
 
-    //     })
+    const speciesLi = document.createElement('li')
+    speciesLi.setAttribute("id", "species")
+    
+    
+    const genderLi = document.createElement('li')
+    genderLi.setAttribute("id", "gender")
+    
+    
+    const ageLi = document.createElement('li')
+    ageLi.setAttribute("id", "age")
+    
+    const speciesSpan = document.createElement('span')
+    speciesSpan.innerText = `Species:${animal.species}`
+    
+    const genderSpan = document.createElement('span')
+    genderSpan.innerText = `Gender:${animal.gender}`
 
-    // }
+    const ageSpan = document.createElement('span')
+    ageSpan.innerText = `Age:${animal.age}`
 
-    surTab.addEventListener("click", () => {
+    const footerDiv = document.createElement('div')
+    footerDiv.className = "card-footer"
 
+    const aTag = document.createElement('a')
+    aTag.setAttribute("href", "#")
+    aTag.className = "btn btn-primary"
+    aTag.innerText = "Find Out More!"
+    aTag.id = animal.id
+
+    const div = document.createElement('div')
+    div.className = "col-lg-3 col-md-6 mb-4"
+
+    speciesLi.append(speciesSpan)
+    genderLi.append(genderSpan)
+    ageLi.append(ageSpan)
+    ul.append(speciesLi, genderLi, ageLi)
+    bodyDiv.append(h4, ul)
+    footerDiv.append(aTag)
+    animalCard.append(animalImg, bodyDiv, footerDiv)
+    div.append(animalCard)
+    animalList.append(div)
+
+    } /////////////////// show animal list end /////////////////////////////////////
+
+ //////////////////////// Posting new animals start //////////////////////
+    surTab.addEventListener("click", ()=>{
+        const form = document.createElement('form')
         hideList = !hideList
         if (hideList) {
             animalList.style.display = 'none'
-
-            const form = document.createElement("form")
             const inputAnimalName = document.createElement('input')
             const inputSpecies = document.createElement('input')
-
             const inputBreed = document.createElement('input')
             const inputImage = document.createElement('input')
             const inputGender = document.createElement('input')
@@ -55,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const br4 = document.createElement('br')
             const br5 = document.createElement('br')
             const br6 = document.createElement('br')
-
             const br7 = document.createElement('br')
 
             inputAnimalName.value = ""
@@ -63,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             inputSpecies.value = ""
             inputSpecies.placeholder = "Enter a Species..."
-
 
             inputBreed.value = ""
             inputBreed.placeholder = "Enter a breed..."
@@ -73,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             inputGender.value = ""
             inputGender.placeholder = "Enter a gender..."
-
 
             inputAge.value = ""
             inputAge.placeholder = "Enter a age..."
@@ -115,28 +156,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     })
                 })
-                    .then(res => res.json())
-                    .then(newAnimal => {
-                        console.log(newAnimal)
-                    })
+                .then(res => res.json())
+                .then(newAnimal => {
+                    showAnimals(newAnimal)
+                })
             })
 
-            form.append(inputAnimalName, br1, inputSpecies, br2, inputBreed, br3, inputImage, br4, inputGender, br5, inputAge, br6, inputDesc, br7, surSubmit)
+            form.append(inputAnimalName,br1,inputSpecies,br2,inputBreed,br3,inputImage,br4,inputGender,br5,inputAge,br6,inputDesc,br7,surSubmit)
             surrenderDiv.append(form)
-
-        } else {
-            while (surrenderDiv.firstChild) {
+    
+        }else {
+            while(surrenderDiv.firstChild){
                 surrenderDiv.removeChild(surrenderDiv.firstChild)
             }
             animalList.style.display = 'block'
             console.log("show list")
-
-            form.append(inputAnimalName, br1, inputSpecies, br2, inputImage, br3, inputGender, br4, inputAge, br5, inputDesc, br6, surSubmit)
-            surrenderDiv.append(form)
-
-        }
-
-
+        } 
     })
 
     ////////////////////////   Sign In Starts Here  //////////////////////////////////////////
@@ -210,19 +245,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 errorMessageForm.append(pFormSingIn)
 
             }
-
-
         }
-
-
     })////////////// Sign In Finshes Here /////////// 
-
-    // loginBarLogout.addEventListener('click', () => {
-    //     loginBarNameIl.innerHTML = ""
-    //     dropdownFormSignIn.style.display = "block";
-    //     navbarDropdownMenuLink.style.display = "block";
-    // })
-
 
     //////////////// Sign Up Starts Here /////////////
 
@@ -264,7 +288,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
         dropdownFormSignIn.append(messageToSigIn)
 
-    })
+    })//////////////// Sign Up Ends Here /////////////
 
+//////////////////////// Posting new Listing start //////////////////////
 
-}) // closing for the DOMLoaded
+    // aTag.addEventListener('click', ()=>{
+    //         animalList.style.display = 'none'
+    //         ////grab user tag that has an id, that is logged in at the moment and store in a variable called currentUser
+    //         //let currentUser = 
+    //         ////grab the btn id of the animal clicked on in a variable called currentAnimal
+    //         //let currentAnimalId = aTag.id
+    //         ////some html stuff for displaying animal info
+
+                // const listingDiv5 = document.createElement('div')
+                // listingDiv5.className = "row align-items-center my-5"
+                // const listingDiv7 = document.createElement('div')
+                // listingDiv7.className = document.createElement("col-lg-7")
+                // const animalImgListing = document.createElement('img')
+                // animalImgListing.className = "img-fluid rounded mb-4 mb-lg-0"
+                // animalImgListing.src = animal.image
+                // animalImgListing.alt = ""
+                ////////////////////////////////
+
+                // const animalListedImg = document.createElement('img')
+                // const animalListedName = document.createElement('h1')
+                // const animalListedSpecies = document.createElement('ul')
+                // const animalListedBreed = document.createElement('ul')
+                // const animalListedGender = document.createElement('ul')
+                // const animalListedAge = document.createElement('ul')
+                // const animalListedDesc = document.createElement('ul')
+                // const animalAdoptBtn = document.createElement('button')
+                // const animalFosterBtn = document.createElement('button')
+
+                // <form>
+                //     option1
+                //     option2
+                //     option3
+                //     submit
+                // <form>
+
+            // while(testingDiv.firstChild){
+            //     testnigDiv.removeChild(testingDiv.firstChild)
+            // }
+            //     animalList.style.display = 'block'
+           
+    // })
+//////////////////////// Posting new Listing end //////////////////////
