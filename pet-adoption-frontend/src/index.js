@@ -1,12 +1,11 @@
 let hideList = false
 let hideSurrender = true
-
 const animalURL = 'http://localhost:3000/api/v1/animals/'
 const surTab = document.querySelector('#surrender')
 const surSubmit = document.createElement('button')
 const animalList = document.querySelector('#animal-list')
 const surrenderDiv = document.querySelector('#surrenderDiv')
-  
+
     fetch(animalURL)
     .then(res => res.json())
     .then(animalData => {
@@ -46,12 +45,44 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
     const ageLi = document.createElement('li')
     ageLi.setAttribute("id", "age")
     
-
     const speciesSpan = document.createElement('span')
     speciesSpan.innerText = `Species:${animal.species}`
     
     const genderSpan = document.createElement('span')
     genderSpan.innerText = `Gender:${animal.gender}`
+
+    const ageSpan = document.createElement('span')
+    ageSpan.innerText = `Age:${animal.age}`
+
+    const footerDiv = document.createElement('div')
+    footerDiv.className = "card-footer"
+
+    const aTag = document.createElement('a')
+    aTag.setAttribute("href", "#")
+    aTag.className = "btn btn-primary"
+    aTag.innerText = "Find Out More!"
+    aTag.id = animal.id
+
+    const div = document.createElement('div')
+    div.className = "col-lg-3 col-md-6 mb-4"
+
+    // aTag.addEventListener('click',{
+
+    // })
+    speciesLi.append(speciesSpan)
+    genderLi.append(genderSpan)
+    ageLi.append(ageSpan)
+    ul.append(speciesLi, genderLi, ageLi)
+    bodyDiv.append(h4, ul)
+    footerDiv.append(aTag)
+    animalCard.append(animalImg, bodyDiv, footerDiv)
+    div.append(animalCard)
+    animalList.append(div)
+
+    } /////////////////// show animal list end /////////////////////////////////////
+
+        //////////////////////// Posting new animals start //////////////////////
+    surTab.addEventListener("click", ()=>{
     
     const ageSpan = document.createElement('span')
     ageSpan.innerText = `Age:${animal.age}`
@@ -103,15 +134,16 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
     // </div>
 
     surTab.addEventListener("click", ()=>{
-
+      
         hideList = !hideList
         if (hideList) {
             animalList.style.display = 'none'
 
+            const inputAnimalName = document.createElement('input')
+            const inputSpecies = document.createElement('input')
             const form = document.createElement("form")
             const inputAnimalName = document.createElement('input')
             const inputSpecies = document.createElement('input')
-
             const inputBreed = document.createElement('input')
             const inputImage = document.createElement('input')
             const inputGender = document.createElement('input')
@@ -125,7 +157,6 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
             const br4 = document.createElement('br')
             const br5 = document.createElement('br')
             const br6 = document.createElement('br')
-
             const br7 = document.createElement('br')
 
             inputAnimalName.value = ""
@@ -133,7 +164,6 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
 
             inputSpecies.value = ""
             inputSpecies.placeholder = "Enter a Species..."
-
 
             inputBreed.value = ""
             inputBreed.placeholder = "Enter a breed..."
@@ -143,7 +173,6 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
 
             inputGender.value = ""
             inputGender.placeholder = "Enter a gender..."
-
 
             inputAge.value = ""
             inputAge.placeholder = "Enter a age..."
@@ -207,6 +236,7 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
     })
 
     ////////////////////////   Sign In Starts Here  //////////////////////////////////////////
+
     const signInForm = document.querySelector('#sign-in-form')
 
     signInForm.addEventListener('submit', () => {
@@ -254,10 +284,37 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
 
                 errorMessageForm.append(pFormSingIn)
             }
+        }
+    })////////////// Sign In Finshes Here /////////// 
 
 
-        } ////////////// Sign In Finshes Here /////////// 
+//////////////////////// Posting new Listing start //////////////////////
+    // const testingTab = document.querySelector('#testing')
 
-        
 
-  })
+    // testingTab.addEventListener('click', ()=>{
+    //     hideList = !hideList
+    //     if (hideList) {
+    //         animalList.style.display = 'none'
+    //         ////grab user tag that has an id, that is logged in at the moment and store in a variable called currentUser
+    //         //let currentUser = 
+    //         ////grab the btn id of the animal clicked on in a variable called currentAnimal
+    //         //let currentAnimal = 
+    //         ////some html stuff for displaying animal info
+
+    //         ////
+
+    //         //have a drop down box to select fosteriing or adopting
+    //         //then hit the agree button to agree to the decision
+
+    //         //make an eventListner for the btn to post a listing between the user and animal using the id stored
+    //         //as well is updating the animals status of Availible to either Adopted or Being Fostered
+
+    //     }else{
+    //         // while(testingDiv.firstChild){
+    //         //     testnigDiv.removeChild(testingDiv.firstChild)
+    //         // }
+    //         animalList.style.display = 'block'
+    //     }
+    // })
+//////////////////////// Posting new Listing end //////////////////////

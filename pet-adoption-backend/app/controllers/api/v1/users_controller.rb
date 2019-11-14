@@ -19,7 +19,7 @@ class Api::V1::UsersController < ApplicationController
 
     private
 
-    def animal_params
+    def user_params
         params.require(:user).permit(:user_name,:first_name,:last_name,:email,:address,:phone_num)
     end
 end
