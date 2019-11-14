@@ -2,11 +2,87 @@ let hideList = false
 let hideSurrender = true
 const animalURL = 'http://localhost:3000/api/v1/animals/'
 
-    const surTab = document.querySelector('#surrender')
-    const surSubmit = document.createElement('button')
-    const animalList = document.querySelector('#animal-list')
-    const surrenderDiv = document.querySelector('#surrenderDiv')
+const surTab = document.querySelector('#surrender')
+const surSubmit = document.createElement('button')
+const animalList = document.querySelector('#animal-list')
+const surrenderDiv = document.querySelector('#surrenderDiv')
     
+    fetch(animalURL)
+    .then(res => res.json())
+    .then(animalData => {
+    
+        animalData.forEach(animal => showAnimals(animal))
+    })
+
+    /////////////////// show animal list start /////////////////////////////////////
+    function showAnimals(animal){
+    const animalCard = document.createElement('div')
+    animalCard.className = "card h-100"
+    animalCard.id = animal.id
+    
+    const animalImg = document.createElement('img')
+    animalImg.src = animal.image
+    animalImg.className = "card-img-top"
+    animalImg.setAttribute("alt", " ")
+
+    const bodyDiv = document.createElement('div')
+    bodyDiv.className = "card-body"
+
+    const h4 = document.createElement('h4')
+    h4.className = "card-title"
+    h4.innerText = animal.name 
+
+    const ul = document.createElement('ul')
+    ul.setAttribute("style", "text-align: left;")
+
+    const speciesLi = document.createElement('li')
+    speciesLi.setAttribute("id", "species")
+    
+    
+    const genderLi = document.createElement('li')
+    genderLi.setAttribute("id", "gender")
+    
+    
+    const ageLi = document.createElement('li')
+    ageLi.setAttribute("id", "age")
+    
+
+    const speciesSpan = document.createElement('span')
+    speciesSpan.innerText = `Species:${animal.species}`
+    
+    const genderSpan = document.createElement('span')
+    genderSpan.innerText = `Gender:${animal.gender}`
+    
+    const ageSpan = document.createElement('span')
+    ageSpan.innerText = `Age:${animal.age}`
+
+    const footerDiv = document.createElement('div')
+    footerDiv.className = "card-footer"
+
+    const aTag = document.createElement('a')
+    aTag.setAttribute("href", "#")
+    aTag.className = "btn btn-primary"
+    aTag.innerText = "Find Out More!"
+    aTag.id = animal.id
+
+    const div = document.createElement('div')
+    div.className = "col-lg-3 col-md-6 mb-4"
+
+    // aTag.addEventListener('click',{
+
+    // })
+    speciesLi.append(speciesSpan)
+    genderLi.append(genderSpan)
+    ageLi.append(ageSpan)
+    ul.append(speciesLi, genderLi, ageLi)
+    bodyDiv.append(h4, ul)
+    footerDiv.append(aTag)
+    animalCard.append(animalImg, bodyDiv, footerDiv)
+    div.append(animalCard)
+    animalList.append(div)
+
+    } /////////////////// show animal list end /////////////////////////////////////
+
         //////////////////////// Posting new animals start //////////////////////
     surTab.addEventListener("click", ()=>{
         hideList = !hideList
