@@ -6,8 +6,6 @@ const surTab = document.querySelector('#surrender')
 const surSubmit = document.createElement('button')
 const animalList = document.querySelector('#animal-list')
 const surrenderDiv = document.querySelector('#surrenderDiv')
-
-document.addEventListener('DOMContentLoaded', () => {
   
     fetch(animalURL)
     .then(res => res.json())
@@ -263,4 +261,3 @@ document.addEventListener('DOMContentLoaded', () => {
         
 
   })
-}) // closing for the DOMLoaded
