@@ -87,9 +87,6 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
 
             const inputAnimalName = document.createElement('input')
             const inputSpecies = document.createElement('input')
-            const form = document.createElement("form")
-            const inputAnimalName = document.createElement('input')
-            const inputSpecies = document.createElement('input')
             const inputBreed = document.createElement('input')
             const inputImage = document.createElement('input')
             const inputGender = document.createElement('input')
@@ -174,10 +171,6 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
             }
             animalList.style.display = 'block'
             console.log("show list")
-        
-            form.append(inputAnimalName, br1, inputSpecies, br2, inputImage, br3, inputGender, br4, inputAge, br5, inputDesc, br6, surSubmit)
-            surrenderDiv.append(form)
-
         } 
     })
 
