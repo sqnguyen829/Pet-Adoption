@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     fetch(animalURL)
-    .then(res => res.json())
-    .then(animalData => {
-        console.log(animalData)
-        // animalData.forEach(animal => showAnimals(animal))
-    })
+        .then(res => res.json())
+        .then(animalData => {
+            console.log(animalData)
+            // animalData.forEach(animal => showAnimals(animal))
+        })
 
     // function showAnimals(animal){
     //     const ul = document.querySelector('#populate-this-list')
@@ -27,12 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
     //     statBtn.innerText = animal.status
 
     //     statBtn.addEventListener('click', (event)=>{
-        
+
     //     })
-    
+
     // }
 
-    surTab.addEventListener("click", ()=>{
+    surTab.addEventListener("click", () => {
 
         hideList = !hideList
         if (hideList) {
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             surSubmit.innerText = "Surrender Animal"
             surSubmit.className = "submit"
-            form.addEventListener('submit', ()=>{
+            form.addEventListener('submit', () => {
                 event.preventDefault()
                 // debugger 
                 let animalName = event.target[0].value
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        "animal":{
+                        "animal": {
                             "name": animalName,
                             "species": species,
                             "breed": breed,
@@ -111,26 +111,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             "gender": gender,
                             "age": age,
                             "status": "Availible",
-                            "description": desc}
+                            "description": desc
+                        }
                     })
                 })
-                .then(res => res.json())
-                .then(newAnimal => {
-                    console.log(newAnimal)
-                })
+                    .then(res => res.json())
+                    .then(newAnimal => {
+                        console.log(newAnimal)
+                    })
             })
 
-            form.append(inputAnimalName,br1,inputSpecies,br2,inputBreed,br3,inputImage,br4,inputGender,br5,inputAge,br6,inputDesc,br7,surSubmit)
-            surrenderDiv.append(form)
-    
-        }else {
-            while(surrenderDiv.firstChild){
-                surrenderDiv.removeChild(surrenderDiv.firstChild)
-            }
-            animalList.style.display = 'block'
-            console.log("show list")
-        
-            form.append(inputAnimalName, br1, inputSpecies, br2, inputImage, br3, inputGender, br4, inputAge, br5, inputDesc, br6, surSubmit)
+            form.append(inputAnimalName, br1, inputSpecies, br2, inputBreed, br3, inputImage, br4, inputGender, br5, inputAge, br6, inputDesc, br7, surSubmit)
             surrenderDiv.append(form)
 
         } else {
@@ -138,8 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 surrenderDiv.removeChild(surrenderDiv.firstChild)
             }
             animalList.style.display = 'block'
-
             console.log("show list")
+
+            form.append(inputAnimalName, br1, inputSpecies, br2, inputImage, br3, inputGender, br4, inputAge, br5, inputDesc, br6, surSubmit)
+            surrenderDiv.append(form)
+
         }
 
 
@@ -183,7 +177,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 navbarDropdownMenuLink.style.display = "none";
                 navbarDropdownMenuLinkSignUp.style.display = "none";
 
+                const pLoggout = document.createElement('p')
+                pLoggout.className = 'nav-link'
+                pLoggout.innerText = 'Log Out'
 
+                const loginBarLogout = document.querySelector('#login-bar-logout')
+                loginBarLogout.append(pLoggout)
+
+                loginBarLogout.addEventListener('click', () => {
+                    // window.location.reload(false); 
+                    loginBarNameIl.innerHTML = ""
+                    navbarDropdownMenuLink.style.display = "block";
+                    navbarDropdownMenuLinkSignUp.style.display = "block";
+                    // dropdownFormSignIn.style.display = "block";
+                    loginBarLogout.innerHTML = ""
+
+                    navbarDropdownMenuLink.addEventListener('click', () => {
+                        dropdownFormSignIn.style.display = "block";
+                    })
+
+
+                })
+
+                
             } else {
                 const errorMessageForm = document.querySelector('#error-message-form')
 
@@ -192,29 +208,63 @@ document.addEventListener('DOMContentLoaded', () => {
                 pFormSingIn.className = "text-danger"
 
                 errorMessageForm.append(pFormSingIn)
+
             }
 
 
-        } ////////////// Sign In Finshes Here /////////// 
-
-        
+        }
 
 
+    })////////////// Sign In Finshes Here /////////// 
+
+    // loginBarLogout.addEventListener('click', () => {
+    //     loginBarNameIl.innerHTML = ""
+    //     dropdownFormSignIn.style.display = "block";
+    //     navbarDropdownMenuLink.style.display = "block";
+    // })
 
 
+    //////////////// Sign Up Starts Here /////////////
 
+    const singupFormDropdown = document.querySelector('#sigupUser')
+    const urlUsers = 'http://localhost:3000/api/v1/users/'
+    const formSigUpClassDropdown = document.querySelector('#formSigUpClassDropdown')
 
+    singupFormDropdown.addEventListener('submit', () => {
+        event.preventDefault()
+        // debugger 
+        let userNameForm = event.target[0].value
+        let firstNameForm = event.target[1].value
+        let lastNameForm = event.target[2].value
+        let emailForm = event.target[3].value
+        let addressForm = event.target[4].value
+        let phoneForm = event.target[5].value
+        fetch(urlUsers, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "user": {
+                    "user_name": userNameForm,
+                    "first_name": firstNameForm,
+                    "last_name": lastNameForm,
+                    "email": emailForm,
+                    "address": addressForm,
+                    "phone_num": phoneForm
+                }
+            })
+        })
+        event.target.reset()
+        formSigUpClassDropdown.style.display = 'none';
+        dropdownFormSignIn.style.display = 'block';
 
+        const messageToSigIn = document.createElement('p')
+        messageToSigIn.innerText = 'Plase Type Your User Name To Log In'
 
-
-
-
-
+        dropdownFormSignIn.append(messageToSigIn)
 
     })
-
-
-
 
 
 }) // closing for the DOMLoaded
