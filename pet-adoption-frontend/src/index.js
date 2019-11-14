@@ -10,28 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const animalList = document.querySelector('#animal-list')
     const surrenderDiv = document.querySelector('#surrenderDiv')
 
-
-    fetch(animalURL)
-    .then(res => res.json())
-    .then(animalData => {
-        console.log(animalData)
-        // animalData.forEach(animal => showAnimals(animal))
-    })
-
-    // function showAnimals(animal){
-    //     const ul = document.querySelector('#populate-this-list')
-
-    //     const petLi = document.createElement('li')
-
-    //     const statBtn = document.createElement('button')
-    //     statBtn.innerText = animal.status
-
-    //     statBtn.addEventListener('click', (event)=>{
-        
-    //     })
-    
-    // }
-
     surTab.addEventListener("click", ()=>{
 
         hideList = !hideList
