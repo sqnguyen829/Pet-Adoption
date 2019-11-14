@@ -1,13 +1,14 @@
 let hideList = false
 let hideSurrender = true
+
 const animalURL = 'http://localhost:3000/api/v1/animals/'
 const surTab = document.querySelector('#surrender')
 const surSubmit = document.createElement('button')
 const animalList = document.querySelector('#animal-list')
 const surrenderDiv = document.querySelector('#surrenderDiv')
 
-
 document.addEventListener('DOMContentLoaded', () => {
+  
     fetch(animalURL)
     .then(res => res.json())
     .then(animalData => {
@@ -104,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // </div>
 
     surTab.addEventListener("click", ()=>{
+
         hideList = !hideList
         if (hideList) {
             animalList.style.display = 'none'
@@ -111,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const form = document.createElement("form")
             const inputAnimalName = document.createElement('input')
             const inputSpecies = document.createElement('input')
+
             const inputBreed = document.createElement('input')
             const inputImage = document.createElement('input')
             const inputGender = document.createElement('input')
@@ -124,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const br4 = document.createElement('br')
             const br5 = document.createElement('br')
             const br6 = document.createElement('br')
+
             const br7 = document.createElement('br')
 
             inputAnimalName.value = ""
@@ -131,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             inputSpecies.value = ""
             inputSpecies.placeholder = "Enter a Species..."
+
 
             inputBreed.value = ""
             inputBreed.placeholder = "Enter a breed..."
@@ -140,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             inputGender.value = ""
             inputGender.placeholder = "Enter a gender..."
+
 
             inputAge.value = ""
             inputAge.placeholder = "Enter a age..."
@@ -195,20 +201,66 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             animalList.style.display = 'block'
             console.log("show list")
-        }
+        
+            form.append(inputAnimalName, br1, inputSpecies, br2, inputImage, br3, inputGender, br4, inputAge, br5, inputDesc, br6, surSubmit)
+            surrenderDiv.append(form)
+
+        } 
     })
 
-// Fernando - Login form
-
-    const signInForm = document.querySelector('#sign-in-form') 
+    ////////////////////////   Sign In Starts Here  //////////////////////////////////////////
+    const signInForm = document.querySelector('#sign-in-form')
 
     signInForm.addEventListener('submit', () => {
         event.preventDefault()
 
+
         fetch('http://localhost:3000/api/v1/users')
-        .then(res => res.json())
-        .then(users => {
-            console.log(users)
-        })
-    })
-})
+
+            .then(res => res.json())
+            .then(users => {
+                // users.forEach(data => displayUserOnNavBar(data))
+                displayUserOnNavBar(users)
+            })
+
+        function displayUserOnNavBar(user) {
+            let chosenUser = user.filter(u => u.user_name === signInForm[0].value)
+            console.log(chosenUser)
+            const loginBarNameIl = document.querySelector('#login-bar-name')
+
+            if (chosenUser.length == 1) {
+                const pUsername = document.createElement('p')
+                const dropdownFormSignIn = document.querySelector('#dropdownFormSignIn')
+                const navbarDropdownMenuLink = document.querySelector('#navbarDropdownMenuLink')
+                const navbarDropdownMenuLinkSignUp = document.querySelector('#navbarDropdownMenuLinkSignUp')
+                pUsername.className = 'nav-link'
+
+                const spanUsername = document.createElement('span')
+                spanUsername.innerText = 'Hello, ' + chosenUser[0].first_name + '!'
+                spanUsername.className = 'text-success'
+
+                pUsername.append(spanUsername)
+                loginBarNameIl.append(pUsername)
+
+                dropdownFormSignIn.style.display = "none";
+                navbarDropdownMenuLink.style.display = "none";
+                navbarDropdownMenuLinkSignUp.style.display = "none";
+
+
+            } else {
+                const errorMessageForm = document.querySelector('#error-message-form')
+
+                const pFormSingIn = document.createElement('p')
+                pFormSingIn.innerText = "Wrong Username"
+                pFormSingIn.className = "text-danger"
+
+                errorMessageForm.append(pFormSingIn)
+            }
+
+
+        } ////////////// Sign In Finshes Here /////////// 
+
+        
+
+  })
+}) // closing for the DOMLoaded
