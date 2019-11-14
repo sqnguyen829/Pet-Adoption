@@ -1,12 +1,10 @@
 let hideList = false
 let hideSurrender = true
 const animalURL = 'http://localhost:3000/api/v1/animals/'
-
 const surTab = document.querySelector('#surrender')
 const surSubmit = document.createElement('button')
 const animalList = document.querySelector('#animal-list')
 const surrenderDiv = document.querySelector('#surrenderDiv')
-
 
     fetch(animalURL)
     .then(res => res.json())
@@ -47,13 +45,12 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
     const ageLi = document.createElement('li')
     ageLi.setAttribute("id", "age")
     
-
     const speciesSpan = document.createElement('span')
     speciesSpan.innerText = `Species:${animal.species}`
     
     const genderSpan = document.createElement('span')
     genderSpan.innerText = `Gender:${animal.gender}`
-    
+
     const ageSpan = document.createElement('span')
     ageSpan.innerText = `Age:${animal.age}`
 
@@ -90,12 +87,16 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
 
             const inputAnimalName = document.createElement('input')
             const inputSpecies = document.createElement('input')
+            const form = document.createElement("form")
+            const inputAnimalName = document.createElement('input')
+            const inputSpecies = document.createElement('input')
             const inputBreed = document.createElement('input')
             const inputImage = document.createElement('input')
             const inputGender = document.createElement('input')
             const inputAge = document.createElement('input')
             const inputDesc = document.createElement('input')
-            
+            const surSubmit = document.createElement('button')
+
             const br1 = document.createElement('br')
             const br2 = document.createElement('br')
             const br3 = document.createElement('br')
@@ -173,10 +174,12 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
             }
             animalList.style.display = 'block'
             console.log("show list")
-        }
-    })//////////////////////// Posting new animals end //////////////////////
+        
+            form.append(inputAnimalName, br1, inputSpecies, br2, inputImage, br3, inputGender, br4, inputAge, br5, inputDesc, br6, surSubmit)
+            surrenderDiv.append(form)
 
-// Fernando - Login form
+        } 
+    })
 
     ////////////////////////   Sign In Starts Here  //////////////////////////////////////////
     const signInForm = document.querySelector('#sign-in-form')
