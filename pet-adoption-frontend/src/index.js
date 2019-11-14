@@ -1,12 +1,11 @@
 let hideList = false
 let hideSurrender = true
 const animalURL = 'http://localhost:3000/api/v1/animals/'
-
 const surTab = document.querySelector('#surrender')
 const surSubmit = document.createElement('button')
 const animalList = document.querySelector('#animal-list')
 const surrenderDiv = document.querySelector('#surrenderDiv')
-    
+
     fetch(animalURL)
     .then(res => res.json())
     .then(animalData => {
@@ -46,13 +45,12 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
     const ageLi = document.createElement('li')
     ageLi.setAttribute("id", "age")
     
-
     const speciesSpan = document.createElement('span')
     speciesSpan.innerText = `Species:${animal.species}`
     
     const genderSpan = document.createElement('span')
     genderSpan.innerText = `Gender:${animal.gender}`
-    
+
     const ageSpan = document.createElement('span')
     ageSpan.innerText = `Age:${animal.age}`
 
@@ -85,10 +83,65 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
 
         //////////////////////// Posting new animals start //////////////////////
     surTab.addEventListener("click", ()=>{
+    
+    const ageSpan = document.createElement('span')
+    ageSpan.innerText = `Age:${animal.age}`
+
+    const footerDiv = document.createElement('div')
+    footerDiv.className = "card-footer"
+
+    const aTag = document.createElement('a')
+    aTag.setAttribute("href", "#")
+    aTag.className = "btn btn-primary"
+    aTag.innerText = "Find Out More!"
+    aTag.id = animal.id
+
+    const div = document.createElement('div')
+    div.className = "col-lg-3 col-md-6 mb-4"
+
+    // aTag.addEventListener('click',{
+
+    // })
+    speciesLi.append(speciesSpan)
+    genderLi.append(genderSpan)
+    ageLi.append(ageSpan)
+    ul.append(speciesLi, genderLi, ageLi)
+    bodyDiv.append(h4, ul)
+    footerDiv.append(aTag)
+    animalCard.append(animalImg, bodyDiv, footerDiv)
+    div.append(animalCard)
+    animalList.append(div)
+
+    } /////////////////// show animal list end /////////////////////////////////////
+    
+    //     })
+    
+    // // }
+
+    // <div class="card h-100">
+    //     <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+    //     <div class="card-body">
+    //     <h4 class="card-title">Animal Name</h4>
+    //     <ul style="text-align: left;">
+    //         <li id="specie"><span>Specie: </span>specie</li>
+    //         <li id="gender"><span>Gender: </span>gender</li>
+    //         <li id="age"><span>Age: </span>age</li>
+    //     </ul>
+    //     </div>
+    //     <div class="card-footer">
+    //     <a href="#" class="btn btn-primary">Find Out More!</a>
+    //     </div>
+    // </div>
+
+    surTab.addEventListener("click", ()=>{
+      
         hideList = !hideList
         if (hideList) {
             animalList.style.display = 'none'
 
+            const inputAnimalName = document.createElement('input')
+            const inputSpecies = document.createElement('input')
+            const form = document.createElement("form")
             const inputAnimalName = document.createElement('input')
             const inputSpecies = document.createElement('input')
             const inputBreed = document.createElement('input')
@@ -96,7 +149,8 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
             const inputGender = document.createElement('input')
             const inputAge = document.createElement('input')
             const inputDesc = document.createElement('input')
-            
+            const surSubmit = document.createElement('button')
+
             const br1 = document.createElement('br')
             const br2 = document.createElement('br')
             const br3 = document.createElement('br')
@@ -174,12 +228,15 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
             }
             animalList.style.display = 'block'
             console.log("show list")
-        }
-    })//////////////////////// Posting new animals end //////////////////////
+        
+            form.append(inputAnimalName, br1, inputSpecies, br2, inputImage, br3, inputGender, br4, inputAge, br5, inputDesc, br6, surSubmit)
+            surrenderDiv.append(form)
 
-// Fernando - Login form
+        } 
+    })
 
-    //////////////////////   Sign In Starts Here  //////////////////////////////////////////
+    ////////////////////////   Sign In Starts Here  //////////////////////////////////////////
+
     const signInForm = document.querySelector('#sign-in-form')
 
     signInForm.addEventListener('submit', () => {
