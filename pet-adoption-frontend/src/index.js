@@ -84,10 +84,7 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
         hideList = !hideList
         if (hideList) {
             animalList.style.display = 'none'
-
-            const inputAnimalName = document.createElement('input')
-            const inputSpecies = document.createElement('input')
-            const form = document.createElement("form")
+            
             const inputAnimalName = document.createElement('input')
             const inputSpecies = document.createElement('input')
             const inputBreed = document.createElement('input')
