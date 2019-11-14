@@ -7,7 +7,7 @@ const animalList = document.querySelector('#animal-list')
 const surrenderDiv = document.querySelector('#surrenderDiv')
 
 
-document.addEventListener('DOMContentLoaded', () => {
+
     fetch(animalURL)
     .then(res => res.json())
     .then(animalData => {
@@ -198,17 +198,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-// Fernando - Login form
 
-    const signInForm = document.querySelector('#sign-in-form') 
-
-    signInForm.addEventListener('submit', () => {
-        event.preventDefault()
-
-        fetch('http://localhost:3000/api/v1/users')
-        .then(res => res.json())
-        .then(users => {
-            console.log(users)
-        })
-    })
-})
