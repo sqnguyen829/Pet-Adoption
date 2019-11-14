@@ -15,6 +15,7 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
         animalData.forEach(animal => showAnimals(animal))
     })
 
+    /////////////////// show animal list start /////////////////////////////////////
     function showAnimals(animal){
     const animalCard = document.createElement('div')
     animalCard.className = "card h-100"
@@ -81,7 +82,7 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
     div.append(animalCard)
     animalList.append(div)
 
-    }
+    } /////////////////// show animal list end /////////////////////////////////////
     
     //     })
     
