@@ -7,7 +7,7 @@ const animalList = document.querySelector('#animal-list')
 const surrenderDiv = document.querySelector('#surrenderDiv')
 
 
-
+document.addEventListener('DOMContentLoaded', () => {
     fetch(animalURL)
     .then(res => res.json())
     .then(animalData => {
@@ -211,3 +211,4 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
             console.log(users)
         })
     })
+})
