@@ -20,6 +20,7 @@ class Api::V1::AnimalsController < ApplicationController
 
     def destroy
         animal = Animal.destroy
+        render json: animal
     end
 
     private
