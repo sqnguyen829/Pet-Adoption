@@ -17,9 +17,26 @@ class Api::V1::AnimalsController < ApplicationController
         animal = Animal.create(animal_params)
     end
 
+    # # Controllers to add bulk date from a CSV
+    # def new
+    #     @animal = Animal.new
+    # end
+  
+    # def create
+    #    Animal.import(params[:animal][:file]
+    #    flash[:notice] = "Animals uploaded successfully"
+    # end
+
+    # # Finsh here
+
     private
 
     def animal_params
         params.require(:animal).permit(:name,:species,:breed,:image,:gender,:age,:status,:description)
     end
+
+
+    
+
+
 end

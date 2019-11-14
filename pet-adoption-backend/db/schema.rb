@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2019_11_11_202243) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+
+
   create_table "listings", force: :cascade do |t|
     t.integer "user_id"
     t.integer "animal_id"
