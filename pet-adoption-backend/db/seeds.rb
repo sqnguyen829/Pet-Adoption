@@ -41,20 +41,19 @@
 # l4 = Listing.create(user_id: u3.id, animal_id: a4.id)
 
 
-# require 'csv'
+require 'csv'
 
-# csv_text = File.read(Rails.root.join('lib', 'seeds', 'dogs_Db_csv.csv'))
-# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-# csv.each do |row|
-#   t = Animal.new
-#   t.name = row['name']
-#   t.species = row['species']
-#   t.breed = row['breed']
-#   t.image = row['image']
-#   t.gender = row['gender']
-#   t.age = row['age']
-#   t.status = row['status']
-#   t.description = row['description']
-# end
+CSV.foreach(Rails.root.join('lib/tasks/db.csv'), :encoding => 'windows-1251:utf-8', headers: true) do |row|
+  Animal.create! do |mode|
+  mode.name = row[0]
+  mode.species = row[1]
+  mode.breed = row[2]
+  mode.image = row[3]
+  mode.gender = row[4]
+  mode.age = row[5]
+  mode.status = row[6]
+  mode.description = row[7]
+  end
+end
 
 
