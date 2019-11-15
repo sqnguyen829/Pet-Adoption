@@ -16,6 +16,7 @@ class Api::V1::ListingsController < ApplicationController
 
     def create
         listing = Listing.create(listing_params)
+        render json: listing
     end
 
     def destroy
