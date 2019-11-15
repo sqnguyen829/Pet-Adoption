@@ -39,3 +39,19 @@ l1 = Listing.create(user_id: u1.id, animal_id: a1.id)
 l2 = Listing.create(user_id: u1.id, animal_id: a2.id)
 l3 = Listing.create(user_id: u2.id, animal_id: a3.id)
 l4 = Listing.create(user_id: u3.id, animal_id: a4.id)
+
+
+require 'csv'
+
+CSV.foreach(Rails.root.join('lib/tasks/db.csv'), :encoding => 'windows-1251:utf-8', headers: true) do |row|
+  Animal.create! do |mode|
+  mode.name = row[0]
+  mode.species = row[1]
+  mode.breed = row[2]
+  mode.image = row[3]
+  mode.gender = row[4]
+  mode.age = row[5]
+  mode.status = row[6]
+  mode.description = row[7]
+  end
+end
