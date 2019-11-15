@@ -1,4 +1,6 @@
 class Api::V1::AnimalsController < ApplicationController
+    # before_action :current_animal, only: [:destroy]
+    
     def index
         animals = Animal.all
         render json: animals, except: [:created_at, :updated_at]
@@ -19,8 +21,9 @@ class Api::V1::AnimalsController < ApplicationController
     end
 
     def destroy
-        animal = Animal.destroy
-        render json: animal
+        animal = Animal.find(params[:id])
+        # byebug
+        animal.destroy
     end
 
     private
@@ -28,4 +31,8 @@ class Api::V1::AnimalsController < ApplicationController
     def animal_params
         params.require(:animal).permit(:name,:species,:breed,:image,:gender,:age,:status,:description)
     end
+
+    # def current_animal
+    #     @animal = Animal.find(params[:id])
+    # end
 end
