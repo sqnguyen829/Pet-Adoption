@@ -18,8 +18,15 @@ class Api::V1::AnimalsController < ApplicationController
         render json: animal, except: [:created_at, :updated_at]
     end
 
+    def update
+        animal = Animal.find(params[:id])
+        animal.update(animal_params)
+        render json: animal, except: [:created_at, :updated_at]
+    end
+
     def destroy
-        animal = Animal.destroy
+        animal = Animal.find(params[:id])
+        animal.destroy
     end
 
     private

@@ -1,6 +1,7 @@
 let hideList = false
 let hideSurrender = true
 const animalURL = 'http://localhost:3000/api/v1/animals/'
+const listingURL = 'http://localhost:3000/api/v1/listings/'
 const surTab = document.querySelector('#surrender')
 const surSubmit = document.createElement('button')
 const animalList = document.querySelector('#animal-list')
@@ -14,73 +15,195 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
     })
 
     ///////////////// show animal list start /////////////////////////////////////
-    function showAnimals(animal){
-    const animalCard = document.createElement('div')
-    animalCard.className = "card h-100"
-    animalCard.id = animal.id
+function showAnimals(animal){
+    if(animal.status === "Availible"){
+        const animalCard = document.createElement('div')
+        animalCard.className = "card h-100"
+        animalCard.id = animal.id
     
-    const animalImg = document.createElement('img')
-    animalImg.src = animal.image
-    animalImg.className = "card-img-top"
-    animalImg.setAttribute("alt", " ")
+        const animalImg = document.createElement('img')
+        animalImg.src = animal.image
+        animalImg.className = "card-img-top"
+        animalImg.setAttribute("alt", " ")
 
-    const bodyDiv = document.createElement('div')
-    bodyDiv.className = "card-body"
+        const bodyDiv = document.createElement('div')
+        bodyDiv.className = "card-body"
 
-    const h4 = document.createElement('h4')
-    h4.className = "card-title"
-    h4.innerText = animal.name 
+        const h4 = document.createElement('h4')
+        h4.className = "card-title"
+        h4.innerText = animal.name 
 
-    const ul = document.createElement('ul')
-    ul.setAttribute("style", "text-align: left;")
+        const deleteBtn = document.createElement('button')
+        deleteBtn.innerText = 'Remove animal'
+        deleteBtn.className = 'btn btn-primary'
+        
+        deleteBtn.addEventListener('click', () => {
+            fetch(`http://localhost:3000/api/v1/animals/${animal.id}`,{
+               method: "DELETE"
+            })
+            .then(div.remove())
+        })
 
-    const speciesLi = document.createElement('li')
-    speciesLi.setAttribute("id", "species")
+        const ul = document.createElement('ul')
+        ul.setAttribute("style", "text-align: left;")
     
+        const speciesLi = document.createElement('li')
+        speciesLi.setAttribute("id", "species")
+        
+        
+        const genderLi = document.createElement('li')
+        genderLi.setAttribute("id", "gender")
+        
+        
+        const ageLi = document.createElement('li')
+        ageLi.setAttribute("id", "age")
+        
+        const speciesSpan = document.createElement('span')
+        speciesSpan.innerText = `Species:${animal.species}`
+        
+        const genderSpan = document.createElement('span')
+        genderSpan.innerText = `Gender:${animal.gender}`
     
-    const genderLi = document.createElement('li')
-    genderLi.setAttribute("id", "gender")
+        const ageSpan = document.createElement('span')
+        ageSpan.innerText = `Age:${animal.age}`
     
+        const footerDiv = document.createElement('div')
+        footerDiv.className = "card-footer"
     
-    const ageLi = document.createElement('li')
-    ageLi.setAttribute("id", "age")
+        const aTag = document.createElement('a')
+        aTag.setAttribute("href", "#")
+        aTag.className = "btn btn-primary"
+        aTag.innerText = "Find Out More!"
+        aTag.id = animal.id
+        
+        //////////////////////// Posting new Listing start //////////////////////
+        
+        const animalListingDiv = document.querySelector('#animalListingDiv')
     
-    const speciesSpan = document.createElement('span')
-    speciesSpan.innerText = `Species:${animal.species}`
+        aTag.addEventListener('click', ()=>{
     
-    const genderSpan = document.createElement('span')
-    genderSpan.innerText = `Gender:${animal.gender}`
+            animalList.style.display = 'none'
+    
+            const divContainerListed = document.createElement('div')
+            const divColImg = document.createElement('div')
+            const divColDetail = document.createElement('div')
+    
+            divContainerListed.className = "row align-items-center my-5"
+            divColImg.className = "col-lg-7"
+            divColDetail.className ="col-lg-5"
+    
+            const animalListedImg = document.createElement('img')
+            animalListedImg.className ="img-fluid rounded mb-4 mb-lg-0"
+            animalListedImg.src = animal.image
+            animalListedImg.alt = ""
+    
+            const animalListedName = document.createElement('h1')
+            animalListedName.className = "font-weight-light"
+            animalListedName.innerText = animal.name
+    
+            const animalListedSpecies = document.createElement('ul')
+            animalListedSpecies.innerText = `Species: ${animal.species}`
+    
+            const animalListedBreed = document.createElement('ul')
+            animalListedBreed.innerText = `Breed: ${animal.breed}`
+    
+            const animalListedGender = document.createElement('ul')
+            animalListedGender.innerText = `Gender: ${animal.gender}`
+    
+            const animalListedAge = document.createElement('ul')
+            animalListedAge.innerText = `Age: ${animal.age}`
+    
+            const animalListedDesc = document.createElement('p')
+            animalListedDesc.innerText = animal.description
+    
+            const optionForm = document.createElement('form')
+            optionForm.className ="task-form"
+    
+            const selectOption = document.createElement('select')
+            // const optionDefault = document.createElement('option')
+            const optionAdopt = document.createElement('option')
+            optionAdopt.value = "Adopted"
+            optionAdopt.innerText = "Adopt Animal"
+    
+            const optionFoster = document.createElement('option')
+            optionFoster.value = "Fostered"
+            optionFoster.innerText = "Foster Animal"
+    
+            const submitOption = document.createElement('input')
+            submitOption.type = 'submit'
+    
+            divColImg.append(animalListedImg)
+            selectOption.append(optionAdopt,optionFoster)
+            optionForm.append(selectOption,submitOption)
+            divColDetail.append(animalListedName,animalListedSpecies,animalListedBreed,animalListedGender,animalListedAge,animalListedDesc,optionForm)
+            divContainerListed.append(divColImg,divColDetail)
+            animalListingDiv.append(divContainerListed)
+    
+            optionForm.addEventListener('submit', ()=>{
+                event.preventDefault()
+                let currentUser = document.querySelector('.text-success')
+                let currentAnimalId = animal.id
+                let statusChoose = event.target[0].value
+    
+                fetch(listingURL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        "user_id": currentUser.id,
+                        "animal_id": currentAnimalId
+                    })
+                })
+                .then(res => res.json())
+                .then(addListed => {
+                    console.log(addListed)
+                })
+    
+                fetch(`http://localhost:3000/api/v1/animals/${currentAnimalId}`, {
+                    method: "PATCH",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'status': statusChoose
+                    })
+                })
+                .then(res => res.json())
+                .then(updateAnimal =>{
+                    animal = updateAnimal
+                    ////this is to update the new status for the animal
+                    //status.innerText = animal.status
+                })
+                while(animalListingDiv.firstChild){
+                    animalListingDiv.removeChild(animalListingDiv.firstChild)
+                }
+                animalList.style.display = 'block'
+                animalList.removeAttribute('style')
+            }) 
+        })
+        //////////////////////// Posting new Listing end //////////////////////
 
-    const ageSpan = document.createElement('span')
-    ageSpan.innerText = `Age:${animal.age}`
-
-    const footerDiv = document.createElement('div')
-    footerDiv.className = "card-footer"
-
-    const aTag = document.createElement('a')
-    aTag.setAttribute("href", "#")
-    aTag.className = "btn btn-primary"
-    aTag.innerText = "Find Out More!"
-    aTag.id = animal.id
-
-    const div = document.createElement('div')
-    div.className = "col-lg-3 col-md-6 mb-4"
-
-    speciesLi.append(speciesSpan)
-    genderLi.append(genderSpan)
-    ageLi.append(ageSpan)
-    ul.append(speciesLi, genderLi, ageLi)
-    bodyDiv.append(h4, ul)
-    footerDiv.append(aTag)
-    animalCard.append(animalImg, bodyDiv, footerDiv)
-    div.append(animalCard)
-    animalList.append(div)
-
-    } /////////////////// show animal list end /////////////////////////////////////
+        const div = document.createElement('div')
+        div.className = "col-lg-3 col-md-6 mb-4"
+    
+        speciesLi.append(speciesSpan)
+        genderLi.append(genderSpan)
+        ageLi.append(ageSpan)
+        ul.append(speciesLi, genderLi, ageLi)
+        bodyDiv.append(h4, ul)
+        footerDiv.append(aTag,deleteBtn)
+        animalCard.append(animalImg, bodyDiv, footerDiv)
+        div.append(animalCard)
+        animalList.append(div)
+    }///if statement close off
+} /////////////////// show animal list end /////////////////////////////////////
 
  //////////////////////// Posting new animals start //////////////////////
     surTab.addEventListener("click", ()=>{
         const form = document.createElement('form')
+        console.log('clicked')
         hideList = !hideList
         if (hideList) {
             animalList.style.display = 'none'
@@ -169,6 +292,7 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
                 surrenderDiv.removeChild(surrenderDiv.firstChild)
             }
             animalList.style.display = 'block'
+            animalList.removeAttribute('style')
             console.log("show list")
         } 
     })
@@ -201,6 +325,9 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
                 pUsername.className = 'nav-link'
 
                 const spanUsername = document.createElement('span')
+                /////////////////////////the tag need an ID//////////////////////////////
+                spanUsername.id = chosenUser[0].id
+                /////////////////////////////////////////////////////////////////////
                 spanUsername.innerText = 'Hello, ' + chosenUser[0].first_name + '!'
                 spanUsername.className = 'text-success'
 
@@ -288,48 +415,3 @@ const surrenderDiv = document.querySelector('#surrenderDiv')
         dropdownFormSignIn.append(messageToSigIn)
 
     })//////////////// Sign Up Ends Here /////////////
-
-//////////////////////// Posting new Listing start //////////////////////
-
-    // aTag.addEventListener('click', ()=>{
-    //         animalList.style.display = 'none'
-    //         ////grab user tag that has an id, that is logged in at the moment and store in a variable called currentUser
-    //         //let currentUser = 
-    //         ////grab the btn id of the animal clicked on in a variable called currentAnimal
-    //         //let currentAnimalId = aTag.id
-    //         ////some html stuff for displaying animal info
-
-                // const listingDiv5 = document.createElement('div')
-                // listingDiv5.className = "row align-items-center my-5"
-                // const listingDiv7 = document.createElement('div')
-                // listingDiv7.className = document.createElement("col-lg-7")
-                // const animalImgListing = document.createElement('img')
-                // animalImgListing.className = "img-fluid rounded mb-4 mb-lg-0"
-                // animalImgListing.src = animal.image
-                // animalImgListing.alt = ""
-                ////////////////////////////////
-
-                // const animalListedImg = document.createElement('img')
-                // const animalListedName = document.createElement('h1')
-                // const animalListedSpecies = document.createElement('ul')
-                // const animalListedBreed = document.createElement('ul')
-                // const animalListedGender = document.createElement('ul')
-                // const animalListedAge = document.createElement('ul')
-                // const animalListedDesc = document.createElement('ul')
-                // const animalAdoptBtn = document.createElement('button')
-                // const animalFosterBtn = document.createElement('button')
-
-                // <form>
-                //     option1
-                //     option2
-                //     option3
-                //     submit
-                // <form>
-
-            // while(testingDiv.firstChild){
-            //     testnigDiv.removeChild(testingDiv.firstChild)
-            // }
-            //     animalList.style.display = 'block'
-           
-    // })
-//////////////////////// Posting new Listing end //////////////////////
