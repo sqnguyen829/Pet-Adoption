@@ -15,7 +15,7 @@ fetch(animalURL)
 
 ///////////////// show animal list start /////////////////////////////////////
 function showAnimals(animal) {
-    
+
     const animalCard = document.createElement('div')
     animalCard.className = "card h-100"
     animalCard.id = animal.id
@@ -82,65 +82,70 @@ function showAnimals(animal) {
 
 //////////////////////// Posting new animals start //////////////////////
 surTab.addEventListener("click", () => {
-    const form = document.createElement('form')
-    form.setAttribute('id', 'surranderForm')
+    // const form = document.createElement('form')
+    // form.setAttribute('id', 'surranderForm')
+    const surranderForm = document.querySelector('#surranderForm')
+    const surrenderDiv = document.querySelector('#surrenderDiv')
+
+    surrenderDiv.style.display = 'block'
+
     hideList = !hideList
     if (hideList) {
         animalList.style.display = 'none'
-        const inputAnimalName = document.createElement('input')
-        const inputSpecies = document.createElement('input')
-        const inputBreed = document.createElement('input')
-        const inputImage = document.createElement('input')
-        const inputGender = document.createElement('input')
-        const inputAge = document.createElement('input')
-        const inputDesc = document.createElement('input')
-        const surSubmit = document.createElement('button')
+        // const inputAnimalName = document.createElement('input')
+        // const inputSpecies = document.createElement('input')
+        // const inputBreed = document.createElement('input')
+        // const inputImage = document.createElement('input')
+        // const inputGender = document.createElement('input')
+        // const inputAge = document.createElement('input')
+        // const inputDesc = document.createElement('input')
+        // const surSubmit = document.createElement('button')
 
-        const br1 = document.createElement('br')
-        const br2 = document.createElement('br')
-        const br3 = document.createElement('br')
-        const br4 = document.createElement('br')
-        const br5 = document.createElement('br')
-        const br6 = document.createElement('br')
-        const br7 = document.createElement('br')
+        // const br1 = document.createElement('br')
+        // const br2 = document.createElement('br')
+        // const br3 = document.createElement('br')
+        // const br4 = document.createElement('br')
+        // const br5 = document.createElement('br')
+        // const br6 = document.createElement('br')
+        // const br7 = document.createElement('br')
 
-        inputAnimalName.value = ""
-        inputAnimalName.placeholder = "Enter a name..."
+        // inputAnimalName.value = ""
+        // inputAnimalName.placeholder = "Enter a name..."
 
-        inputSpecies.value = ""
-        inputSpecies.placeholder = "Enter a Species..."
+        // inputSpecies.value = ""
+        // inputSpecies.placeholder = "Enter a Species..."
 
-        inputBreed.value = ""
-        inputBreed.placeholder = "Enter a breed..."
+        // inputBreed.value = ""
+        // inputBreed.placeholder = "Enter a breed..."
 
-        inputImage.value = ""
-        inputImage.placeholder = "Enter a imgae url..."
+        // inputImage.value = ""
+        // inputImage.placeholder = "Enter a imgae url..."
 
-        inputGender.value = ""
-        inputGender.placeholder = "Enter a gender..."
+        // inputGender.value = ""
+        // inputGender.placeholder = "Enter a gender..."
 
-        inputAge.value = ""
-        inputAge.placeholder = "Enter a age..."
+        // inputAge.value = ""
+        // inputAge.placeholder = "Enter a age..."
 
-        inputDesc.value = ""
-        inputDesc.placeholder = "Enter a description..."
+        // inputDesc.value = ""
+        // inputDesc.placeholder = "Enter a description..."
 
-        surSubmit.type = "submit"
-        surSubmit.name = "submit"
+        // surSubmit.type = "submit"
+        // surSubmit.name = "submit"
 
-        surSubmit.innerText = "Surrender Animal"
-        surSubmit.className = "submit"
-        form.addEventListener('submit', () => {
+        // surSubmit.innerText = "Surrender Animal"
+        // surSubmit.className = "submit"
+        surranderForm.addEventListener('submit', () => {
             event.preventDefault()
             // debugger 
             let animalName = event.target[0].value
-            let species = event.target[1].value
-            let breed = event.target[2].value
-            let image = event.target[3].value
-            let gender = event.target[4].value
-            let age = event.target[5].value
-            let desc = event.target[6].value
-            form.reset()
+            // let species = event.target[1].value
+            let breed = event.target[1].value
+            let image = event.target[2].value
+            let gender = event.target[3].value
+            let age = event.target[4].value
+            let desc = event.target[5].value
+            surranderForm.reset()
             fetch(animalURL, {
                 method: "POST",
                 headers: {
@@ -149,7 +154,7 @@ surTab.addEventListener("click", () => {
                 body: JSON.stringify({
                     "animal": {
                         "name": animalName,
-                        "species": species,
+                        "species": 'dog',
                         "breed": breed,
                         "image": image,
                         "gender": gender,
@@ -165,16 +170,18 @@ surTab.addEventListener("click", () => {
                 })
         })
 
-        form.append(inputAnimalName, br1, inputSpecies, br2, inputBreed, br3, inputImage, br4, inputGender, br5, inputAge, br6, inputDesc, br7, surSubmit)
-        surrenderDiv.append(form)
+        // form.append(inputAnimalName, br1, inputSpecies, br2, inputBreed, br3, inputImage, br4, inputGender, br5, inputAge, br6, inputDesc, br7, surSubmit)
+        // surrenderDiv.append(form)
 
-    } else {
-        while (surrenderDiv.firstChild) {
-            surrenderDiv.removeChild(surrenderDiv.firstChild)
-        }
-        animalList.style.display = 'block'
-        animalList.removeAttribute("style")
+    } 
+    else {
+        // while (surrenderDiv.firstChild) {
+        //     surrenderDiv.removeChild(surrenderDiv.firstChild)
+        // }
+        // animalList.style.display = 'block'
+        // animalList.removeAttribute("style")
         // console.log("show list")
+        // surrenderDiv.style.display = 'block'
     }
 })
 
