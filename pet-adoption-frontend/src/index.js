@@ -289,7 +289,7 @@ function showAnimals(animal){
                             "image": image,
                             "gender": gender,
                             "age": age,
-                            "status": "Availible",
+                            "status": "Available",
                             "description": desc}
                     })
                 })
@@ -390,7 +390,7 @@ signInForm.addEventListener('submit', () => {
                 let listOfUserInfo = user.filter(data => data.id == loggedInCurrentUser.id)
 
                 let userAnimals = listOfUserInfo[0].animals
-                
+
                 userAnimals.forEach(animal => {
 
                     const myDivCol = document.createElement('div')
