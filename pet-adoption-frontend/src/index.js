@@ -384,76 +384,88 @@ signInForm.addEventListener('submit', () => {
                     animalListingDiv.removeChild(animalListingDiv.firstChild)
                 }
 
+                
                 let loggedInCurrentUser = document.querySelector('.text-success')
                 console.log(loggedInCurrentUser.id)
                 console.log(user.filter(data => data.id == loggedInCurrentUser.id))
                 let listOfUserInfo = user.filter(data => data.id == loggedInCurrentUser.id)
-
+                
                 let userAnimals = listOfUserInfo[0].animals
 
-                userAnimals.forEach(animal => {
-
-                    const myDivCol = document.createElement('div')
-                    myDivCol.className = "col-lg-3 col-md-6 mb-4"
-
-                    const myAnimalCard = document.createElement('div')
-                    myAnimalCard.className = "card h-100"
-                    myAnimalCard.id = animal.id
-
-                    const myAnimalImg = document.createElement('img')
-                    myAnimalImg.src = animal.image
-                    myAnimalImg.className = "card-img-top"
-                    myAnimalImg.setAttribute("alt", " ")
-
-                    const myBodyDiv = document.createElement('div')
-                    myBodyDiv.className = "card-body"
-
-                    const myH4 = document.createElement('h4')
-                    myH4.className = "card-title"
-                    myH4.innerText = animal.name 
-
-                    const myUl = document.createElement('ul')
-                    myUl.setAttribute("style", "text-align: left;")
-
-                    const myLiSpecie = document.createElement('li')
-                    myLiSpecie.id = "specie"
-
-                    const mySpanSpecie = document.createElement('span')
-                    mySpanSpecie.innerText = `Specie: ${animal.species}`
-
-                    const myLiGender = document.createElement('li')
-                    myLiGender.id = "gender"
-
-                    const mySpanGender = document.createElement('span')
-                    mySpanGender.innerText = `Gender: ${animal.gender}`
-
-                    const myLiAge = document.createElement('li')
-                    myLiAge.id = "age"
-                    
-                    const mySpanAge = document.createElement('span')
-                    mySpanAge.innerText = `Age: ${animal.age}`
-
-                    const myLiStatus = document.createElement('li')
-                    myLiStatus.id = "status"
-                    
-                    const mySpanStatus = document.createElement('span')
-                    mySpanStatus.innerText = `Status: ${animal.status}`
-
-                    myLiSpecie.append(mySpanSpecie)
-                    myLiGender.append(mySpanGender)
-                    myLiAge.append(mySpanAge)
-                    myLiStatus.append(mySpanStatus)
-
-                    myUl.append(myLiSpecie,myLiGender,myLiAge,mySpanStatus)
-
-                    myBodyDiv.append(myH4,myUl)
-
-                    myAnimalCard.append(myAnimalImg,myBodyDiv)
-
-                    myDivCol.append(myAnimalCard)
-
-                    myPetDiv.append(myDivCol)
+                // fetch(animalURL)
+                // .then(res => res.json())
+                // .then(animalData => {
+                //     animalData.forEach(animal => showAnimals(animal))
+                // })
                 
+                fetch(`http://localhost:3000/api/v1/users/${loggedInCurrentUser.id}`)
+                .then(res => res.json())
+                .then(user => {
+                    let userAnimals = user.animals
+                    userAnimals.forEach(animal => {
+
+                        const myDivCol = document.createElement('div')
+                        myDivCol.className = "col-lg-3 col-md-6 mb-4"
+    
+                        const myAnimalCard = document.createElement('div')
+                        myAnimalCard.className = "card h-100"
+                        myAnimalCard.id = animal.id
+    
+                        const myAnimalImg = document.createElement('img')
+                        myAnimalImg.src = animal.image
+                        myAnimalImg.className = "card-img-top"
+                        myAnimalImg.setAttribute("alt", " ")
+    
+                        const myBodyDiv = document.createElement('div')
+                        myBodyDiv.className = "card-body"
+    
+                        const myH4 = document.createElement('h4')
+                        myH4.className = "card-title"
+                        myH4.innerText = animal.name 
+    
+                        const myUl = document.createElement('ul')
+                        myUl.setAttribute("style", "text-align: left;")
+    
+                        const myLiSpecie = document.createElement('li')
+                        myLiSpecie.id = "specie"
+    
+                        const mySpanSpecie = document.createElement('span')
+                        mySpanSpecie.innerText = `Specie: ${animal.species}`
+    
+                        const myLiGender = document.createElement('li')
+                        myLiGender.id = "gender"
+    
+                        const mySpanGender = document.createElement('span')
+                        mySpanGender.innerText = `Gender: ${animal.gender}`
+    
+                        const myLiAge = document.createElement('li')
+                        myLiAge.id = "age"
+                        
+                        const mySpanAge = document.createElement('span')
+                        mySpanAge.innerText = `Age: ${animal.age}`
+    
+                        const myLiStatus = document.createElement('li')
+                        myLiStatus.id = "status"
+                        
+                        const mySpanStatus = document.createElement('span')
+                        mySpanStatus.innerText = `Status: ${animal.status}`
+    
+                        myLiSpecie.append(mySpanSpecie)
+                        myLiGender.append(mySpanGender)
+                        myLiAge.append(mySpanAge)
+                        myLiStatus.append(mySpanStatus)
+    
+                        myUl.append(myLiSpecie,myLiGender,myLiAge,mySpanStatus)
+    
+                        myBodyDiv.append(myH4,myUl)
+    
+                        myAnimalCard.append(myAnimalImg,myBodyDiv)
+    
+                        myDivCol.append(myAnimalCard)
+    
+                        myPetDiv.append(myDivCol)
+                    
+                    })
                 })
             })//////////////////////////My pets end///////////////////////////////
 
