@@ -1,5 +1,7 @@
 # Pet-Adoption
-everything is working hopfuly
+Develpoers of this app: Steven Nguyen, Patrick Freeney and Fernando C Gomez De La Cruz
+
+Everything is working hopefuly
 
 #If schema and seed is set already skip step 1
 
