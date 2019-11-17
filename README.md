@@ -1,7 +1,10 @@
 # Pet-Adoption
 everything is working hopfuly
+
 #If schema and seed is set already skip step 1
+
 #To run the code start with:
+
 1)go to the back end bundle install
     -check if schema is set with rails db:migrate
     -then seed with rails db:seed
